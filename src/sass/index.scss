@@ -1,2 +1,17 @@
 @import './common';
 @import './example';
+
+.gallery{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.photo-card{
+    width: calc((100% - 48px) / 3);
+
+}
+.info{
+    display: flex;
+    flex-direction: row;
+}
