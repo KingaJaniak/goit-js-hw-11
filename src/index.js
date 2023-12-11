@@ -16,8 +16,13 @@ document.addEventListener('DOMContentLoaded', function () {
   searchForm.addEventListener('submit', event => {
     event.preventDefault();
     currentQuery = searchInput.value.trim();
-    searchImg(currentQuery, true);
-  });
+    if (!currentQuery) {
+        notification.warning('Please enter a search query.');
+        return;
+      }
+  
+      searchImg(currentQuery, true);
+    });
   loadMore.style.display = 'none';
 
   const apiKey = '41181454-8b56e64d19cc61326c145b8db';
@@ -64,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
           );
         }
       } else {
-        loadMore.style.display = 'block';
+        loadMore.style.display = 'flex';
       }
       page++;
     } catch (error) {
@@ -86,8 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const card = document.createElement('div');
       card.classList.add('photo-card');
       card.innerHTML = ` <a href="${largeImageURL}" data-lightbox="gallery">
-    <img src="${webformatURL}" alt="${tags}" loading="lazy" width="480"
-    height="320" />
+    <img src="${webformatURL}" alt="${tags}" loading="lazy" />
   </a>
   <div class="info">
     <p class="info-item"><b>Likes:</b> ${likes}</p>
